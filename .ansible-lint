@@ -1,0 +1,7 @@
+---
+profile: production
+exclude_paths:
+  - .venv/
+parseable: true
+strict: true
+verbosity: 1

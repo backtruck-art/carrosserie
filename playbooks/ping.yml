@@ -1,0 +1,7 @@
+---
+- name: Ping the host(s) in the invetory
+  hosts: all
+  tasks:
+    - name: Ping
+      ansible.builtin.ping:
+# vim: ft=yaml.ansible
