@@ -1,0 +1,27 @@
+---
+name: Run Continuous Integration (CI) pipeline
+
+on:  # yamllint disable-line rule:truthy
+  push:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ansible-lint:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version-file: .python-version
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements-dev.txt
+      - name: Download dependencies
+        run: pip install -r requirements-dev.txt
+      - name: Run ansible-lint
+        run: ansible-lint
